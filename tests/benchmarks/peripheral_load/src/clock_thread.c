@@ -9,7 +9,6 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(clock, LOG_LEVEL_INF);
 
-#include <nrfs_backend_ipc_service.h>
 #include <zephyr/devicetree.h>
 #include <zephyr/devicetree/clocks.h>
 #include <zephyr/drivers/clock_control/nrf_clock_control.h>
@@ -161,7 +160,7 @@ static void clock_thread(void *arg1, void *arg2, void *arg3)
 
 	atomic_inc(&started_threads);
 
-	nrfs_backend_wait_for_connection(K_FOREVER);
+	k_msleep(100);
 	test_clock_control_request(cpuapp_hsfll_test_clk_contexts,
 				   ARRAY_SIZE(cpuapp_hsfll_test_clk_contexts));
 

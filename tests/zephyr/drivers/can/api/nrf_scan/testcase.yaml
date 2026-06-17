@@ -1,0 +1,19 @@
+common:
+  tags:
+    - drivers
+    - can
+  depends_on: can
+  harness: ztest
+  harness_config:
+    fixture: nrf-scan
+  filter: dt_chosen_exists("zephyr,canbus") and dt_compat_enabled("nordic,nrf-scan")
+  platform_allow:
+    - nrf54l15dk/nrf54l15/cpuapp
+  integration_platforms:
+    - nrf54l15dk/nrf54l15/cpuapp
+tests:
+  nrf.extended.drivers.can.api.nrf_scan: {}
+  nrf.extended.drivers.can.api.nrf_scan.pm:
+    extra_configs:
+      - CONFIG_PM_DEVICE=y
+      - CONFIG_PM_DEVICE_RUNTIME=y

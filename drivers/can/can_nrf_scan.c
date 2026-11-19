@@ -73,6 +73,8 @@ static int scan_err_to_errno(nrf_scan_error_t err)
 		return -EIO;
 	case NRF_SCAN_ERROR_ACK_ERROR:
 		return -EIO;
+	case NRF_SCAN_ERROR_TIMEOUT:
+		return -ETIMEDOUT;
 	default:
 		return -EIO;
 	}
